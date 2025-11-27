@@ -1,0 +1,6 @@
+1546587676-4;juan perez saez;juan.perez@gmail.com;19000;zbc1233;12-03-2021
+12332333-5;cristian perez aguil;a.doe@gmail.com;23456;z123133;11-02-2021
+98765432-1;maria lopez rojas;mlopez@gmail.com;50000;abc9999;01-01-2022
+11223344-6;pedro gonzalez;pedro.g@gmail.com;75000;def7777;30-06-2023
+55667788-9;ana diaz;ana.diaz@gmail.com;100000;ghi5555;15-09-2024
+20456789-3;camila rojas muñoz;camila.rojas@example.com;37500;zxq7890;25-11-2025

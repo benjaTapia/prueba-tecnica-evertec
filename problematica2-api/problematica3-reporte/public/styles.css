@@ -1,0 +1,288 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #e5e7eb;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+a {
+  color: inherit;
+}
+
+/* Contenedor principal */
+body > * {
+  width: 100%;
+}
+
+.main-container {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+}
+
+/* Si no tienes .main-container, puedes envolver todo el body con esta clase en index.html.
+   Mientras tanto, aplicamos directo a body para no romper nada: */
+body {
+  display: flex;
+  justify-content: center;
+}
+body > .page {
+  max-width: 1100px;
+  width: 100%;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* Para que funcione aunque no tengas .page,
+   estilamos directamente los elementos base también */
+h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Tarjetas (filtros + tabla) */
+section {
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+/* --- Filtros --- */
+
+#filtros h2 {
+  margin-bottom: 1rem;
+}
+
+#form-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+}
+
+#form-filtros label {
+  font-size: 0.85rem;
+  color: #cbd5f5;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+#form-filtros input[type="text"],
+#form-filtros input[type="date"] {
+  background-color: #020617;
+  border: 1px solid #334155;
+  color: #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  min-width: 190px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  font-size: 0.95rem;
+}
+
+#form-filtros input[type="text"]:focus,
+#form-filtros input[type="date"]:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+  background-color: #020617;
+}
+
+/* Botones */
+
+#form-filtros button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.3rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+#form-filtros button[type="submit"] {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #052e16;
+  box-shadow: 0 10px 18px rgba(34, 197, 94, 0.25);
+}
+
+#form-filtros button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(34, 197, 94, 0.35);
+}
+
+#btn-limpiar {
+  background-color: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid #475569;
+}
+
+#btn-limpiar:hover {
+  background-color: #020617;
+  transform: translateY(-1px);
+}
+
+/* --- Tabla --- */
+
+#reporte h2 {
+  margin-bottom: 1rem;
+}
+
+/* Para scroll horizontal en pantallas pequeñas */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Si no tienes .table-wrapper en el HTML,
+   no pasa nada: la tabla igual tendrá estilo */
+#tabla-deudas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  background-color: #020617;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+#tabla-deudas thead {
+  background: linear-gradient(135deg, #0f766e, #0ea5e9);
+}
+
+#tabla-deudas th,
+#tabla-deudas td {
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid #020617;
+}
+
+#tabla-deudas th {
+  font-weight: 600;
+  color: #e5e7eb;
+  white-space: nowrap;
+}
+
+#tabla-deudas tbody tr:nth-child(even) {
+  background-color: #020617;
+}
+
+#tabla-deudas tbody tr:nth-child(odd) {
+  background-color: #020617;
+}
+
+#tabla-deudas tbody tr:hover {
+  background-color: #0b1120;
+}
+
+#tabla-deudas td {
+  color: #e5e7eb;
+}
+
+/* Mensaje de “no se encontraron deudas” */
+#tabla-deudas td[colspan] {
+  text-align: center;
+  font-style: italic;
+  color: #9ca3af;
+}
+
+/* --- Responsivo --- */
+
+@media (max-width: 900px) {
+  body > .page {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  #form-filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #form-filtros input[type="text"],
+  #form-filtros input[type="date"] {
+    width: 100%;
+    min-width: 0;
+  }
+
+  #form-filtros button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  section {
+    padding: 1.1rem 1rem;
+  }
+
+  #tabla-deudas {
+    font-size: 0.8rem;
+  }
+
+  #tabla-deudas th,
+  #tabla-deudas td {
+    padding: 0.55rem 0.7rem;
+  }
+}
+
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.brand-logo {
+  height: 54px;          /* ajusta el tamaño si quieres */
+  object-fit: contain;
+}
+
+.brand-text h1 {
+  margin-bottom: 0.25rem;
+  text-align: left;
+}
+
+.brand-text p {
+  text-align: left;
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+/* En pantallas chicas centramos los textos */
+@media (max-width: 600px) {
+  .brand {
+    flex-direction: column;
+  }
+
+  .brand-text h1,
+  .brand-text p {
+    text-align: center;
+  }
+}

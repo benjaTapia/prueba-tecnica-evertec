@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reporte de Deudas de Clientes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Hoja de estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="brand">
+        <!-- Logo Evertec -->
+        <img
+          src="img/evertec-logo.png"
+          alt="Logo Evertec"
+          class="brand-logo"
+        />
+
+        <!-- Título y descripción -->
+        <div class="brand-text">
+          <h1>Reporte de Deudas de Clientes</h1>
+          <p>
+            Visualización y filtrado de deudas por
+            <strong>ID de cliente</strong> y
+            <strong>fecha de vencimiento</strong>.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sección de filtros -->
+    <section id="filtros">
+      <h2>Filtros de búsqueda</h2>
+      <form id="form-filtros">
+        <div class="campo">
+          <label for="clienteId">ID Cliente</label>
+          <input
+            type="text"
+            id="clienteId"
+            name="clienteId"
+            placeholder="Ej: CLI0001"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="fechaVencimiento">Fecha de vencimiento</label>
+          <input
+            type="date"
+            id="fechaVencimiento"
+            name="fechaVencimiento"
+          />
+        </div>
+
+        <div class="acciones">
+          <button type="submit">
+            🔍 Buscar
+          </button>
+          <button type="button" id="btn-limpiar">
+            ♻️ Limpiar filtros
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Sección de reporte -->
+    <section id="reporte">
+      <h2>Deudas cargadas</h2>
+      <div class="table-wrapper">
+        <table id="tabla-deudas">
+          <thead>
+            <tr>
+              <th>ID Cliente</th>
+              <th>Nombre Cliente</th>
+              <th>Correo</th>
+              <th>Monto Deuda</th>
+              <th>ID Deuda</th>
+              <th>Fecha Vencimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Las filas se cargan dinámicamente desde app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lógica del front -->
+  <script src="app.js"></script>
+</body>
+</html>
