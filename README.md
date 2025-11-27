@@ -19,26 +19,24 @@ Ejemplo de estructura de carpetas:
 ```text
 .
 ├─ problematica1-carga/
-│   ├─ src/
-│   └─ deuda_clientes.txt
+│   ├─ src/                  (código de carga si corresponde)
+│   └─ deuda_clientes.txt    (archivo de entrada con deudas)
 │
 ├─ problematica2-api/
-│   ├─ server.js
+│   ├─ server.js             (API REST Node.js/Express)
 │   ├─ package.json
-│   ├─ .env
-│   └─ ...
+│   ├─ .env                  (configuración BD y Basic Auth)
+│   └─ ...                   (otros archivos propios de la API)
 │
 └─ problematica3-reporte/
     └─ public/
-        ├─ index.html
-        ├─ styles.css
-        ├─ app.js
+        ├─ index.html        (página principal del reporte)
+        ├─ styles.css        (estilos del reporte)
+        ├─ app.js            (lógica del front para consumir la API)
         └─ img/
            └─ evertec-logo.png
 
 ```
-
-Los nombres pueden variar, pero este README asume una separación clara entre las tres problemáticas.
 
 2. Requisitos previos
 
