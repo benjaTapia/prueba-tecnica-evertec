@@ -1,66 +1,77 @@
 # Problemáticas 1, 2 y 3
 
-Importante: La carpeta "PruebaEstuidantes" contiene la Problemática 1 y la carpeta "problemática2-api" contiene la problematica 2 mas la interfaz web que sería la problemática 3
+Importante:
 
-Este repositorio contiene el desarrollo de una prueba técnica dividida en tres problemáticas relacionadas entre sí:
+ * La carpeta PruebaEstudiantes contiene la Problemática 1 (carga de archivo de texto a la base de datos).
 
-- **Problemática 1**: Carga de deudas desde un archivo de texto hacia la base de datos.  
-- **Problemática 2**: API REST para gestionar las deudas (CRUD y filtros).  
-- **Problemática 3**: Reporte web que consume la API y permite filtrar deudas por ID de cliente y fecha de vencimiento.
+ * La carpeta problematica2-api contiene la Problemática 2 (API REST) y la Problemática 3 (interfaz web dentro de public/).
 
-Todas las problemáticas utilizan la misma base de datos y la misma tabla `deudas`.
+Este repositorio contiene el desarrollo completo de una prueba técnica dividida en tres problemáticas relacionadas entre sí:
 
----
+ * Problemática 1: Carga de deudas desde un archivo de texto hacia la base de datos.
 
-## 1. Estructura del proyecto
+ * Problemática 2: API REST para gestionar las deudas (CRUD y filtros).
 
-Ejemplo de estructura de carpetas:
+ * Problemática 3: Reporte web que consume la API y permite filtrar deudas por ID de cliente y fecha de vencimiento.
+
+Todas las problemáticas utilizan la misma base de datos y la misma tabla deudas.
+
+1. Estructura del proyecto
 
 ```text
 .
-├─ problematica1-carga/
-│   ├─ src/                  (código de carga si corresponde)
-│   └─ deuda_clientes.txt    (archivo de entrada con deudas)
-│
-├─ problematica2-api/
-│   ├─ server.js             (API REST Node.js/Express)
+├─ problematica2-api/                ← Problemática 2 + 3
+│   ├─ node_modules/
 │   ├─ package.json
-│   ├─ .env                  (configuración BD y Basic Auth)
-│   └─ ...                   (otros archivos propios de la API)
+│   ├─ package-lock.json
+│   ├─ .env
+│   ├─ server.js
+│   └─ problematica3-reporte/
+│       └─ public/
+│           ├─ index.html
+│           ├─ styles.css
+│           ├─ app.js
+│           └─ img/
+│               └─ evertec-logo.png
 │
-└─ problematica3-reporte/
-    └─ public/
-        ├─ index.html        (página principal del reporte)
-        ├─ styles.css        (estilos del reporte)
-        ├─ app.js            (lógica del front para consumir la API)
-        └─ img/
-           └─ evertec-logo.png
+├─ Problematicas y Diagramas/        ← Informes, PDFs, SQL, diagramas UML
+│   ├─ creacion_bd_deudas.sql
+│   ├─ Problematica 1.pdf
+│   ├─ Problematica 2 - Informe.pdf
+│   ├─ Problematica 3.pdf
+│   └─ Diagramas Prueba Técnica.pdf
+│
+└─ PruebaEstudiantes/                ← Problemática 1
+    ├─ cargar_deudas.py
+    └─ deuda_clientes.txt
+
 
 ```
 
 2. Requisitos previos
 
-• MySQL instalado y en ejecución.
+ * MySQL instalado y en ejecución.
 
-• Node.js versión 18 o superior.
+ * Node.js 18+
 
-• Para la Problemática 1:
-
-   • Si está desarrollada en Java: JDK 8 o superior e IDE o herramientas de compilación (por ejemplo Maven o Gradle).
-
-   • Si está desarrollada en Node.js: solo Node.js.
+ * Python 3.x (solo para Problemática 1)
 
 3. Base de datos
 
 Las tres problemáticas comparten la misma base de datos.
 
 ```text
-CREATE DATABASE deudas_clientes;
+
+CREATE DATABASE IF NOT EXISTS deudas_clientes
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
 USE deudas_clientes;
+
 
 ```
 
-3.2 Creación de la tabla deudas
+Creación de la tabla deudas
 
 
 ```text
@@ -80,76 +91,64 @@ CREATE TABLE deudas (
 ```
 4. Problemática 1 – Carga de deudas (archivo de texto a base de datos)
 
-Objetivo: leer un archivo de texto con deudas de clientes e insertarlas en la tabla deudas.
+Ubicación del código
 
-4.1 Ubicación del código
+* Carpeta: PruebaEstudiantes/
 
-• Carpeta: problematica1-carga/
+* Archivos:
 
-• Archivo de entrada: deuda_clientes.txt
+  * cargar_deudas.py
 
-• Clases típicas:
+  * deuda_clientes.txt
 
-   • DeudaCliente
+Instalación de librerías
 
-   • AppCargaDeudas (programa principal)
+Instalar el conector de MySQL:
 
-   • ConexionBD (configuración de conexión a MySQL)
 
-4.2 Configuración de conexión
+```text
 
-Configura la conexión a la base de datos con:
+pip install mysql-connector-python
 
-• Host: localhost
 
-• Puerto: 3306
+```
 
-• Base de datos: deudas_clientes
+Ejecución
 
-• Usuario y contraseña de MySQL según tu entorno.
+```text
 
-4.3 Ejecución (ejemplo)
+cd PruebaEstudiantes
+python cargar_deudas.py
 
-Si está en Java:
 
-1. Abrir problematica1-carga en el IDE.
+```
+Resultado
 
-2. Compilar el proyecto.
+Los registros del archivo .txt son cargados en la BD.
 
-3. Ejecutar la clase AppCargaDeudas.
-
-4. Verificar en MySQL:
-
+Puedes verificar:
 
 ```text
 
 SELECT * FROM deudas;
 
-
 ```
 
-Si está en Node.js:
+5. Problemática 2 – API REST de deudas (Node.js + Express)
 
-```text
+Ubicación del código
 
-cd problematica1-carga
-npm install
-node index.js
+* Carpeta: problematica2-api/
 
+* Archivos principales:
 
-```
+ * server.js
 
-5. Problemática 2 – API REST de deudas
+ * .env
 
-Objetivo: exponer la información de deudas mediante una API REST documentada con Swagger.
+ * package.json
 
-5.1 Ubicación del código
-
-• Carpeta: problematica2-api/
-
-• Archivos: server.js, package.json, .env
-
-5.2 Archivo .env
+Contenido de .env
 
 ```text
 
@@ -164,7 +163,7 @@ BASIC_PASS=admin123
 
 ```
 
-5.3 Instalación
+Instalación
 
 ```text
 
@@ -173,13 +172,11 @@ npm install
 
 ```
 
-5.4 Ejecución
+Ejecución
 
 ```text
 
 node server.js
-# o
-npm start
 
 ```
 
@@ -191,7 +188,7 @@ La API quedará disponible en:
 
 • Swagger: http://localhost:3000/api-docs
 
-5.5 Endpoints principales
+Endpoints principales
 
 • GET /api/deudas
 
@@ -207,40 +204,74 @@ La API quedará disponible en:
 
 ```
 
-6. Problemática 3 – Reporte web de deudas
+6. Problemática 3 – Reporte web de deudas (Frontend simple)
 
 Objetivo: mostrar un reporte web con todas las deudas y permitir filtrar por ID de cliente y fecha de vencimiento.
 
-6.1 Ubicación del código
+Ubicación
 
-• Carpeta: problematica3-reporte/public/
+ * Carpeta: problematica2-api/problematica3-reporte/public/
 
-• Archivos:
+Archivos
 
-  • index.html
+ * index.html
 
-  • styles.css
+ * styles.css
 
-  • app.js
+ * app.js
 
-  • img/evertec-logo.png
+ * img/evertec-logo.png
 
-El server.js de la API sirve estos archivos como contenido estático.
+Uso
 
-6.2 Uso
-
-Con la API en ejecución (node server.js en problematica2-api), abrir en el navegador:
+Con la API ejecutándose (node server.js), abrir:
 
 ```text
 
-)](http://localhost:3000/)
+http://localhost:3000/
 
 ```
 
-La página muestra:
+Incluye
 
-• Encabezado con el logo.
+ * Logo Evertec
 
-• Formulario de filtros (ID cliente y fecha de vencimiento).
+ * Filtros por:
 
-• Tabla con las deudas.
+   * ID Cliente
+     
+   * Fecha de vencimiento
+
+Tabla de deudas cargada dinamicamente desde la API
+
+7. Orden recomendado de ejecución
+
+   * Crear base de datos y tabla deudas.
+
+Ejecutar Problemática 1:
+
+```text
+
+python cargar_deudas.py
+
+```
+Ejecutar Problemática 2:
+```text
+
+node server.js
+
+```
+Abrir el front de la Problemática 3:
+   
+```text
+
+http://localhost:3000/
+
+```
+8. Notas finales
+
+ * Todo el proyecto está estructurado para ejecutarse localmente.
+
+ * La API sirve automáticamente el frontend.
+
+ * Los diagramas, informes y script SQL están en la carpeta Problematicas y Diagramas.
